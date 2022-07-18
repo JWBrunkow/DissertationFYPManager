@@ -1,5 +1,9 @@
 package brunkow.james.SpringTemplate.data.model;
+import brunkow.james.SpringTemplate.api.dto.RegisterProjectRequestDto;
+
 import javax.persistence.*;
+import java.util.List;
+
 @Entity
 @Table(name="projects", schema="example_schema")
 //Using methods from DTO, this class provides getters for the newly attributed java fields.
@@ -32,7 +36,11 @@ public class User {
     @Column(nullable = false)
     public Boolean ethicsRequired;
 
+    @Column(nullable = true)
+    public List groupMembers;
 
+    @Column(nullable = false)
+    public Boolean cybersecDegree;
 
     public Long getInstanceId() {return instanceId;}
     public String getStudentId() {return studentId;}
@@ -46,4 +54,7 @@ public class User {
     public String getSupervisor2Email() {return supervisor2Email;}
     public Boolean getCybersecProject() {return cybersecProject;}
     public Boolean getEthicsRequired() {return ethicsRequired;}
-}
+    public List getGroupMembers() {return groupMembers;}
+    public Boolean getCybersecDegree() {return cybersecDegree;}
+    }
+

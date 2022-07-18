@@ -1,7 +1,10 @@
 package brunkow.james.SpringTemplate.api.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 //DTO Stands for Data Transfer Object.
 //It takes a Json input and splits the input based on the data labels given
@@ -52,9 +55,22 @@ public class RegisterProjectRequestDto {
     @JsonProperty("cybersec_project")
     private Boolean cybersecProject;
 
+    @NotBlank(message = "cybersecDegree quantifier not found")
+    @JsonProperty("cybersecDegree")
+    private Boolean cybersecDegree;
+
+
+
     @NotBlank(message = "ethicsRequired quantifier not found")
     @JsonProperty("ethics_required")
     private Boolean ethicsRequired;
+
+
+    ObjectMapper mapper = new ObjectMapper();
+
+    @JsonProperty("groupMembers")
+    private List groupMembers;
+
 
     public RegisterProjectRequestDto() {
     }
@@ -84,17 +100,25 @@ public class RegisterProjectRequestDto {
     public String getSupervisor2Name() {return supervisor2Name;}
     public void setSupervisor2Name(String supervisor2Name) {this.supervisor2Name = supervisor2Name;}
 
+    public Boolean getCybersecDegree() {return cybersecDegree;}
+    public void setCybersecDegree(Boolean cybersecDegree) {this.cybersecDegree = cybersecDegree;}
+
+    public List getGroupMembers() {return groupMembers;}
+    public void setGroupMembers(List groupMembers) {this.groupMembers = groupMembers;}
+
     @Override
     public String toString() {
         return "RegisterProjectRequestDto{" +
-                "instanceId=" + instanceId +
+                "instanceId=" + instanceId + '\'' +
                 ", studentId='" + studentId + '\'' +
                 ", studentName='" + studentName + '\'' +
                 ", degreeTitle='" + degreeTitle + '\'' +
+                ", cybersecDegree" + cybersecDegree + '\'' +
                 ", projectName='" + projectName + '\'' +
                 ", supervisor1Name='" + supervisor1Name + '\'' +
                 ", supervisor1Email='" + supervisor1Email + '\'' +
-                ", groupProject=" + groupProject +
+                ", groupProject=" + groupProject + '\'' +
+                ", groupMembers=" + groupMembers + '\'' +
                 ", supervisor2Name='" + supervisor2Name + '\'' +
                 ", supervisor2Email='" + supervisor2Email + '\'' +
                 ", cybersecProject=" + cybersecProject +

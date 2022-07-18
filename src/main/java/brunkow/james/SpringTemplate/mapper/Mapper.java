@@ -21,6 +21,8 @@ public class Mapper {
         userDto.setSupervisor2Email(user.getSupervisor2Email());
         userDto.setCybersecProject(user.getCybersecProject());
         userDto.setEthicsRequired(user.getEthicsRequired());
+        userDto.setGroupMembers(user.getGroupMembers());
+        userDto.setCybersecDegree(user.getCybersecDegree());
         return userDto;
     }
 }
