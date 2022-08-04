@@ -118,39 +118,35 @@ function sendJSON(){
 
 
 // Excel parsing WIP
-let selectedFile;
-console.log(window.XLSX);
-document.getElementById('fileUpload').addEventListener("change", (event) => {
-    selectedFile = event.target.files[0];
-})
+ //Method to read excel file and convert it into JSON 
+ function upload() {
+    var files = document.getElementById('file_upload').files;
+    excelFileToJSON(files[0]);
+ }
+ 
+ function excelFileToJSON(file){
+    try {
+      var reader = new FileReader();
+      reader.readAsBinaryString(file);
+      reader.onload = function(e) {
 
-let excelData=[{
-    "name":"jayanth",
-    "data":"scd",
-    "abc":"sdef"
-}]
-
-
-document.getElementById('excelButton').addEventListener("click", () => {
-    XLSX.utils.json_to_sheet(excelData, 'out.xlsx');
-    if(selectedFile){
-        let fileReader = new FileReader();
-        fileReader.readAsBinaryString(selectedFile);
-        fileReader.onload = (event)=>{
-         let excelData = event.target.result;
-         let workbook = XLSX.read(excelData,{type:"binary"});
-         console.log(workbook);
-         workbook.SheetNames.forEach(sheet => {
-              let rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
-              console.log(rowObject);
-              document.getElementById("jsondata").innerHTML = JSON.stringify(rowObject,undefined,4)
-         });
-        }
+          var data = e.target.result;
+          var workbook = XLSX.read(data, {
+              type : 'binary'
+          });
+          var result = {};
+          workbook.SheetNames.forEach(function(sheetName) {
+          var roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+          if (roa.length > 0) {
+              result[sheetName] = roa;
+          }
+        });
+          //displaying the json result
+          var resultEle=document.getElementById("json-result");
+          resultEle.value=JSON.stringify(result, null, 4);
+          resultEle.style.display='block';
+          }
+      }catch(e){
+          console.error(e);
+      }
     }
-});
-
-function myFunction(){
-    if (!document.getElementById("nameInput").value || !document.getElementById("loginInput").value || !document.getElementById("courseTitle").value
-        || !document.getElementById("projectName").value || !document.getElementById("supervisorName").value) {
-            alert("Please fill in all required fields");
-        }};
