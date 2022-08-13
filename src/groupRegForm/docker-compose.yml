@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  product-services:
+    build: ./src
+    volumes:
+      - ./src:/usr/share/nginx/html
+    ports:
+      - 8082:80
