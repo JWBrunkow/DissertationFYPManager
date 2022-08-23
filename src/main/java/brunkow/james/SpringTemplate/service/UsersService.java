@@ -36,7 +36,7 @@ public class UsersService {
         // }
         // if (!userRepository.findByStudentIdIgnoreCase(requestDto.getStudentId()).isEmpty()) {
         //     LOGGER.warn("Tried to register user with Student ID " + requestDto.getStudentId() + " however this Student ID already exists");
-        //     return new ResponseDto(CreateProjectRequestResponseEnum.STUDENTID_ALREADY_EXISTS.getResponse());
+        //      return new ResponseDto(CreateProjectRequestResponseEnum.STUDENTID_ALREADY_EXISTS.getResponse());
         // }
 // Save new entry to DB
         try {
