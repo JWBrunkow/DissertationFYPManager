@@ -37,6 +37,12 @@ async function getUser() {
     let login = $('#loginInput').val();
     let url = 'http://localhost:8080/getusers';
 
+    studentData = [
+      {instance_id: null, student_id: 'aa111', student_name: 'Adam', degree_title: 'MSc Computer Science Conversion'},
+      {instance_id: null, student_id: 'bb222', student_name: 'Brandon', degree_title: 'MSc Computer Science'},
+      {instance_id: null, student_id: 'cc333', student_name: 'Charlie', degree_title: 'MSc Cyber Security'} 
+              ];
+
     try {
         let response = await fetch(url);
         var data = await response.json();
@@ -61,6 +67,8 @@ async function getUser() {
             logingArray.push(data[i].supervisor_1_email);
             loginName.push(data[i].supervisor_1_name);
             studentCheck = 3;
+        }else if(loginCookieToObj.login == studentData[i].student_id){
+            studentCheck = 4;
         }
         else{
             console.log('User does not exist');
@@ -104,7 +112,7 @@ async function getUser() {
     console.log(studentLoginId);
     for( i = 0; i < data.length; i++) {
         //if student is registered
-        if(((data[i].project_name.length >=1) && (loginCookieToObj.login == data[i].student_id))) {
+        if(((data[i].project_name.length >=1) && ((loginCookieToObj.login == data[i].student_id)))) {
             console.log('registered');
             registeredProject.push(data[i].project_name);
             projectSupervisor.push(data[i].supervisor_1_name);
@@ -144,14 +152,20 @@ async function getUser() {
         let welcomeMessage = document.getElementById('welcomeMessage');
         welcomeMessage.textContent += ' ' + loginName[0] + ' { student }';
     // } else if(logingArray.length >= 1 && logingArray[0] == dataLogin) {
-       } else if(studentCheck==3){
+        } else if(studentCheck==3){
         //handling elements for supervisor
         $('#project_registration').hide();
         //welcome message
         let welcomeMessage = document.getElementById('welcomeMessage');
         welcomeMessage.textContent += ' ' + loginName[0];
         console.log('Hi supervisor');
-    }
+        } else if(studentCheck==4){
+          $('#file_upload').hide();
+          $('#excel_upload').hide();
+          $('#RegisteredStudents').hide();
+          $('#generate_report').hide();
+        }
+
 }
 
 

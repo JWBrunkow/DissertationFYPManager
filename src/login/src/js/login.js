@@ -3,6 +3,10 @@ async function getLogin() {
     let login = $('#loginInput').val();
     let url = 'http://localhost:8080/getusers';
 
+    if(login == 'cemsugandpgt@kent.ac.uk') {
+        window.location.href = "http://localhost:8083";
+    }
+
     try {
         let response = await fetch(url);
         var data = await response.json();
@@ -21,10 +25,10 @@ async function getLogin() {
     }
     console.log(studentData);
 
-    supervisorData = [
-        {supervisor_1_email: 'dd444@kent.ac.uk', supervisor_1_name: 'Darren'},
-        {supervisor_1_email: 'ee555@kent.ac.uk', supervisor_1_name: 'Eric'}
-    ]
+    // supervisorData = [
+    //     {supervisor_1_email: 'dd444@kent.ac.uk', supervisor_1_name: 'Darren'},
+    //     {supervisor_1_email: 'ee555@kent.ac.uk', supervisor_1_name: 'Eric'}
+    // ]
     //loop through array of object from response, if student id matches with login
     //then add that login to an array.
     loginArr = [];
@@ -36,6 +40,12 @@ async function getLogin() {
             loginArr.push(data[i].supervisor_1_email); 
         }else if(login == data[i].supervisor_1_name) {
             loginArr.push(data[i].supervisor_1_name);
+        // }else if(login == supervisorData[i].supervisor_1_email) {
+        //     loginArr.push(supervisorData[i].supervisor_1_email);
+        // }else if(login == supervisorData[i].supervisor_1_name) {
+        //     loginArr.push(supervisorData[i].supervisor_1_name);
+        }else if(login == studentData[i].student_id) {
+            loginArr.push(studentData[i].student_id);
         }
     }
     
