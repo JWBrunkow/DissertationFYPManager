@@ -40,10 +40,6 @@ async function getLogin() {
             loginArr.push(data[i].supervisor_1_email); 
         }else if(login == data[i].supervisor_1_name) {
             loginArr.push(data[i].supervisor_1_name);
-        // }else if(login == supervisorData[i].supervisor_1_email) {
-        //     loginArr.push(supervisorData[i].supervisor_1_email);
-        // }else if(login == supervisorData[i].supervisor_1_name) {
-        //     loginArr.push(supervisorData[i].supervisor_1_name);
         }else if(login == studentData[i].student_id) {
             loginArr.push(studentData[i].student_id);
         }
