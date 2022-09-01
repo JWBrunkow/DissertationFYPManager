@@ -16,7 +16,7 @@ async function getLogin() {
 
 
     studentData = [
-        {instance_id: null, student_id: 'aa111', student_name: 'Adam', degree_title: 'MSc Computer Science Conversion'},
+        {instance_id: null, student_id: 'jbkh2', student_name: 'Adam', degree_title: 'MSc Computer Science Conversion'},
         {instance_id: null, student_id: 'bb222', student_name: 'Brandon', degree_title: 'MSc Computer Science'},
         {instance_id: null, student_id: 'cc333', student_name: 'Charlie', degree_title: 'MSc Cyber Security'} 
                 ];
