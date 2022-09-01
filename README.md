@@ -70,7 +70,7 @@ To test the api (mac/linux only):
 
 
 ### Uploading excel
-Use provided excel file to upload.
+Use provided excel file in src/excelReader to upload.
 If using other excel files, headers in excel must be changed to match variable names of the database
 
 student_id
